@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import './assets/global.css'
+import { Form, FormItem, Input, Button } from 'element-ui'
+Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
 
 Vue.config.productionTip = false
 
