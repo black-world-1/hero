@@ -24,8 +24,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: 'zs',
-        password: '123'
+        username: 'admin',
+        password: '123456'
       },
       loginFormRules: {
         username: [
@@ -45,8 +45,15 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     login () {
-      this.$refs.loginFormRef.validate((val) => {
-        console.log(val)
+      this.$refs.loginFormRef.validate(async (val) => {
+        if (!val) return
+        const { data } = await this.$http.post('login', this.loginForm)
+        if (data.meta.status !== 200) return this.$message.error('登录失败')
+        this.$message.success('登录成功')
+        // 将登录成功后的 token 保存到客户端的 sessionstorage 中
+        window.sessionStorage.setItem('token', data.data.token)
+        // 通过链式编程导航跳转到后台主页 ，路由地址是  /home
+        this.$router.push('/home')
       })
     }
   }
