@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './assets/global.css'
-import { Form, FormItem, Input, Button, Message, Container, Aside, Main, Header, Submenu, MenuItemGroup, MenuItem, Menu, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader } from 'element-ui'
+import { Form, FormItem, Input, Button, Message, Container, Aside, Main, Header, Submenu, MenuItemGroup, MenuItem, Menu, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane } from 'element-ui'
 import axios from 'axios'
 import ZKTable from 'vue-table-with-tree-grid'
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
@@ -43,6 +43,9 @@ Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Cascader)
+Vue.use(Alert)
+Vue.use(Tabs)
+Vue.use(TabPane)
 Vue.prototype.$message = Message
 Vue.config.productionTip = false
 Vue.prototype.$confirm = MessageBox.confirm
