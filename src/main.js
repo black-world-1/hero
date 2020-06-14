@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './assets/global.css'
-import { Form, FormItem, Input, Button, Message, Container, Aside, Main, Header, Submenu, MenuItemGroup, MenuItem, Menu, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, CheckboxGroup, Checkbox, Upload, Step, Steps } from 'element-ui'
+import { Form, FormItem, Input, Button, Message, Container, Aside, Main, Header, Submenu, MenuItemGroup, MenuItem, Menu, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option, Cascader, Alert, Tabs, TabPane, CheckboxGroup, Checkbox, Upload, Step, Steps, Timeline, TimelineItem } from 'element-ui'
 import axios from 'axios'
 import ZKTable from 'vue-table-with-tree-grid'
 // 导入富文本编辑器
@@ -58,9 +58,25 @@ Vue.use(Checkbox)
 Vue.use(Upload)
 Vue.use(Step)
 Vue.use(Steps)
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 Vue.prototype.$message = Message
 Vue.config.productionTip = false
 Vue.prototype.$confirm = MessageBox.confirm
+
+Vue.filter('dateFormat', function (originVal) {
+  const dt = new Date(originVal)
+
+  const y = dt.getFullYear()
+  const m = (dt.getMonth() + 1 + '').padStart(2, '0')
+  const d = (dt.getDate() + '').padStart(2, '0')
+
+  const hh = (dt.getHours() + '').padStart(2, '0')
+  const mm = (dt.getMinutes() + '').padStart(2, '0')
+  const ss = (dt.getSeconds() + '').padStart(2, '0')
+
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
 new Vue({
   router,
   render: h => h(App)
